@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+
+  api:
+    build:
+      dockerfile: ./backend/Dockerfile
+      context: ./backend
+      target: development
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env.dev
+    command: yarn start:dev
+    depends_on:
+      - mongodb
+    networks:
+      - app-connect
+    ports:
+      - 3000:3000
+
+  front:
+    build:
+      dockerfile: ./frontend/Dockerfile
+      context: ./frontend
+      target: development
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env.dev
+    networks:
+      - app-connect
+    command: yarn start:dev
+    ports:
+      - 3001:3001
+
+  mongodb:
+    image : mongo:latest
+    container_name: mongodb
+    volumes:
+      - ./mongodb-data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - app-connect
+    restart: always
+
+volumes:
+  mongodb-data:
+
+networks:
+  app-connect:
+      driver: bridge

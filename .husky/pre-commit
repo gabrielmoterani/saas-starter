@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+echo '🏗️👷 Checking styling of your project before committing👷‍♂️🏗️'
+
+# Check ESLint Standards
+yarn lint

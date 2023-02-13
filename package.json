@@ -9,10 +9,16 @@
     "commit": "cz"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.5.4",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/supabase-js": "^2.7.1",
+    "@tailwindcss/typography": "tailwindcss/typography",
     "daisyui": "^2.50.0",
     "next": "latest",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
@@ -23,6 +29,7 @@
     "autoprefixer": "^10.4.12",
     "commitizen": "^4.2.6",
     "cz-conventional-changelog": "3.3.0",
+    "encoding": "^0.1.13",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",

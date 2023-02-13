@@ -1,6 +1,5 @@
 version: '3.3'
 services:
-
   api:
     build:
       dockerfile: ./backend/Dockerfile
@@ -34,7 +33,7 @@ services:
       - 3001:3001
 
   mongodb:
-    image : mongo:latest
+    image: mongo:latest
     container_name: mongodb
     volumes:
       - ./mongodb-data:/data/db
@@ -49,4 +48,4 @@ volumes:
 
 networks:
   app-connect:
-      driver: bridge
+    driver: bridge

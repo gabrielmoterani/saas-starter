@@ -1,7 +1,10 @@
+'use client'
+
 import React, { useRef, useState } from 'react'
 
 // ** External Components
 import { SlEnvolope, SlKey } from 'react-icons/sl'
+import toast from 'react-hot-toast'
 
 //* * Supabase */
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
@@ -12,12 +15,9 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
   const supabase = useSupabaseClient()
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
-  const [isLoading, setLoading] = useState(true)
-
-  console.log(isLoading)
+  const [isLoading, setLoading] = useState(false)
 
   const handleProvider = async (provider: Provider) => {
-    console.log(provider)
     try {
       setLoading(true)
       const { error } = await supabase.auth.signInWithOAuth({
@@ -26,7 +26,7 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
       if (error) throw error
     } catch (error: unknown) {
       if (error instanceof Error) {
-        alert(error.message)
+        toast.error(error.message)
       }
     } finally {
       setLoading(false)
@@ -45,7 +45,7 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
       if (error) throw error
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message)
+        toast.error(error.message)
       }
     } finally {
       setLoading(false)
@@ -57,7 +57,10 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
       <h1 className='text-center text-xl font-bold'>Welcome back!</h1>
       <p className='text-center text-md opacity-60'>Login using</p>
       <div className='mt-5'>
-        <ProvidersContainer onProviderClick={handleProvider} providers={['google', 'twitter', 'facebook']} />
+        <ProvidersContainer
+          onProviderClick={handleProvider}
+          providers={['google', 'twitter', 'facebook']}
+        />
       </div>
       <span className='divider'>or</span>
       <div className='w-full'>
@@ -97,8 +100,11 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
         </div>
       </div>
       <div className='mt-10'>
-        <button onClick={handleLogin} className='btn btn-outline btn-primary w-full'>
-          Sign In
+        <button
+          onClick={handleLogin}
+          className={`btn btn-outline btn-primary w-full ${isLoading ? 'loading disabled' : ''}`}
+        >
+          {isLoading ? '' : 'Sign In'}
         </button>
       </div>
     </div>

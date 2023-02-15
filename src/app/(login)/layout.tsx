@@ -1,3 +1,9 @@
+'use client'
+
+//* * External Components */
+import { Toaster } from 'react-hot-toast'
+
+//* * HOCS */
 import SupabaseProvider from '../../hocs/SupabaseProvider'
 
 export const dynamic = 'force-dynamic'
@@ -10,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body>
         <SupabaseProvider>{children}</SupabaseProvider>
+        <Toaster position='bottom-center' />
       </body>
     </html>
   )

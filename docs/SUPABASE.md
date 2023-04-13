@@ -24,3 +24,9 @@ Now that you've created some database tables, you are ready to insert data using
 1. Go to the (API Settings)[https://app.supabase.com/project/_/settings/api] page in the Dashboard.
 2. Find your Project URL, anon, and service_role keys on this page.
 3. And finally we want to save the environment variables in a .env.development. All we need are the API URL and the anon key that you copied earlier.
+
+## Set ENV URL
+
+1. Go to the (URL Setting) [https://app.supabase.com/project/_/auth/url-configuration] page in the Dashboard
+2. Add the base url of your application (your domain or lvh.me:5001).
+3. Change the baseurl in the .env files

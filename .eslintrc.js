@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'airbnb-base', 'airbnb-typescript'],
+  extends: ['next/core-web-vitals', 'airbnb-base', 'airbnb-typescript', "prettier"],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],

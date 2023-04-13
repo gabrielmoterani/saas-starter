@@ -4,6 +4,9 @@ import React, { useRef, useState } from 'react'
 
 // ** External Components
 import { SlEnvolope, SlKey } from 'react-icons/sl'
+import { useRouter } from 'next/navigation'
+
+// ** Utils **
 import toast from 'react-hot-toast'
 
 //* * Supabase */
@@ -16,6 +19,7 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
   const emailRef = useRef(null)
   const passwordRef = useRef(null)
   const [isLoading, setLoading] = useState(false)
+  const router = useRouter()
 
   const handleProvider = async (provider: Provider) => {
     try {
@@ -43,6 +47,8 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
         password: passwordRef?.current?.value,
       })
       if (error) throw error
+      toast.success('Welcome back! Login succefull!')
+      router.push('dashboard')
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
@@ -106,6 +112,14 @@ const Login = ({ changeLoginState }: { changeLoginState: Function }) => {
         >
           {isLoading ? '' : 'Sign In'}
         </button>
+      </div>
+      <div className='mt-10 text-center'>
+        <span
+          className='text-sm text-gray-600 text-right opacity-40 cursor-pointer'
+          onClick={() => changeLoginState('signup')}
+        >
+          New here? Create an account
+        </span>
       </div>
     </div>
   )

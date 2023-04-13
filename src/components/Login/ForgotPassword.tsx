@@ -5,22 +5,26 @@ import { SlEnvolope } from 'react-icons/sl'
 
 //* * HOOKS */
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { toast } from 'react-hot-toast'
 
 const ForgotPassword = ({ changeLoginState }: { changeLoginState: Function }) => {
   const supabase = useSupabaseClient()
 
   const emailRef = useRef(null)
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(false)
 
   const handleForgetPassword = async () => {
     try {
       setLoading(true)
       // @ts-expect-error
-      const { error } = await supabase.auth.resetPasswordForEmail(emailRef?.current?.value)
+      const { error } = await supabase.auth.resetPasswordForEmail(emailRef?.current?.value, {
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
+      })
+      toast.success('Recover email sent!')
       if (error) throw error
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message)
+        toast.error(error.message)
       }
     } finally {
       setLoading(false)

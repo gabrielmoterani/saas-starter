@@ -20,8 +20,8 @@ const ForgotPassword = ({ changeLoginState }: { changeLoginState: Function }) =>
       const { error } = await supabase.auth.resetPasswordForEmail(emailRef?.current?.value, {
         redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
       })
-      toast.success('Recover email sent!')
       if (error) throw error
+      toast.success('Recover email sent!')
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)

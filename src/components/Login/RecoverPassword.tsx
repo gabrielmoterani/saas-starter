@@ -62,7 +62,7 @@ const RecoverPassword = () => {
       <div className='w-full'>
         <div className='form-control w-full'>
           <label className='label'>
-            <span className='label-text'>Confirm Passwrod</span>
+            <span className='label-text'>Confirm Password</span>
           </label>
           <div className='input input-md input-bordered w-full flex items-center'>
             <SlKey />

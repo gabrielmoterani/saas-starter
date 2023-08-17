@@ -4,7 +4,7 @@
 import { Toaster } from 'react-hot-toast'
 
 //* * HOCS */
-import SupabaseProvider from '../../hocs/SupabaseProvider'
+import SupabaseProvider from '@/hocs/SupabaseProvider'
 
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true

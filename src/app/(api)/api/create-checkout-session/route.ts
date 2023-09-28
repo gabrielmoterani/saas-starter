@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { stripe } from '@/utils/stripe'
-import { createOrRetrieveCustomer } from '@/utils/supabase-admin'
+import { createOrRetrieveCustomer } from '@/model/server/stripe.server'
 import { getURL } from '@/utils/helpers'
 import { IDatabase } from '@/interfaces'
 

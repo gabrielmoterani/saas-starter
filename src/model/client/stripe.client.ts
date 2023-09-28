@@ -23,6 +23,7 @@ export const getActiveProductsWithPrices = async () => {
     .select('*, prices(*)')
     .eq('active', true)
     .eq('prices.active', true)
+    .eq('metadata->>visibleForPricing', 'true')
     .order('metadata->index')
     .order('unit_amount', { foreignTable: 'prices' })
 
